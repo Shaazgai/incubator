@@ -22,7 +22,7 @@ import {
   GraduationCap,
   CalendarRange
 } from 'lucide-react'
-import MentorClientActions from './[id]/client-components'
+// import MentorClientActions from './[id]/client-components'
 
 // Generate static params for all mentor IDs
 export function generateStaticParams() {
