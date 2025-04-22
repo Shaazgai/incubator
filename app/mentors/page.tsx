@@ -22,6 +22,7 @@ import {
   GraduationCap,
   CalendarRange
 } from 'lucide-react'
+import ComingSoonContent from '@/components/comingSoon'
 // import MentorClientActions from './[id]/client-components'
 
 // Generate static params for all mentor IDs
@@ -38,12 +39,13 @@ export default function MentorDetailPage({ params }: { params: { id: string } })
   
   if (!mentor) {
     return (
-      <div className="container py-12 text-center">
-        <h1 className="text-2xl font-bold mb-4">Mentor not found</h1>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* <h1 className="text-2xl font-bold mb-4">Mentor not found</h1>
         <p className="mb-8">We couldn&apos;t find the mentor you&apos;re looking for.</p>
         <Link href="/mentors">
           <Button>Back to Mentors</Button>
-        </Link>
+        </Link> */}
+        <ComingSoonContent/>
       </div>
     )
   }

@@ -18,7 +18,6 @@ import {
   Linkedin, 
   Twitter,
   Globe,
-  User
 } from 'lucide-react'
 
 export default function InvestorDetailPage() {
@@ -30,16 +29,16 @@ export default function InvestorDetailPage() {
   if (!investor) {
     return (
       <div className="container py-12 text-center">
-        <h1 className="text-2xl font-bold mb-4">Investor not found</h1>
-        <p className="mb-8">We couldn&apos;t find the investor you&apos;re looking for.</p>
+        <h1 className="text-2xl font-bold mb-4">Хөрөнгө оруулагч олдсонгүй</h1>
+        <p className="mb-8">Таны хайж байгаа хөрөнгө оруулагчийг олж чадсангүй.</p>
         <Link href="/investors">
-          <Button>Back to Investors</Button>
+          <Button>Хөрөнгө оруулагчид руу буцах</Button>
         </Link>
       </div>
     )
   }
   
-  // Get initials for avatar fallback
+  // Аватарын нэрийн үсгийн товчлол авах
   const getInitials = (name: string) => {
     return name
       .split(' ')
@@ -48,35 +47,40 @@ export default function InvestorDetailPage() {
       .toUpperCase()
   }
   
-  // Format money in USD
+  // Мөнгөн дүнг төгрөгөөр форматлах
   const formatMoney = (amount: number) => {
-    if (amount >= 1000000) {
-      return `$${(amount / 1000000).toFixed(1)}M`
-    } else if (amount >= 1000) {
-      return `$${(amount / 1000).toFixed(0)}K`
+    // USD-аас MNT руу хөрвүүлэх (ойролцоогоор 1 USD = 3500 MNT гэж тооцъё)
+    const mntAmount = amount * 3500
+    
+    if (mntAmount >= 1000000000) {
+      return `${(mntAmount / 1000000000).toFixed(1)} тэрбум ₮`
+    } else if (mntAmount >= 1000000) {
+      return `${(mntAmount / 1000000).toFixed(0)} сая ₮`
+    } else if (mntAmount >= 1000) {
+      return `${(mntAmount / 1000).toFixed(0)} мянга ₮`
     }
-    return `$${amount}`
+    return `${mntAmount} ₮`
   }
   
-  // Determine variant based on interest
+  // Сонирхлын төрлөөр харагдах байдлыг тодорхойлох
   const getVariantForInterest = (interest: string) => {
     const map: Record<string, any> = {
-      'Fintech': 'finance',
+      'Финтек': 'finance',
       'SaaS': 'tech',
-      'Clean Energy': 'success',
-      'AgTech': 'success',
-      'E-commerce': 'tech',
-      'Logistics': 'warning',
-      'EdTech': 'education',
-      'Healthcare': 'health',
-      'Mining Tech': 'warning',
-      'Consumer Apps': 'tech',
-      'Sustainability': 'success',
-      'Mobile Apps': 'tech',
-      'Consumer Tech': 'tech',
-      'Creative Economy': 'info',
-      'Smart City': 'tech',
-      'Tourism Tech': 'info'
+      'Цэвэр эрчим хүч': 'success',
+      'Хөдөө аж ахуйн технологи': 'success',
+      'Цахим худалдаа': 'tech',
+      'Логистик': 'warning',
+      'Боловсролын технологи': 'education',
+      'Эрүүл мэнд': 'health',
+      'Уул уурхайн технологи': 'warning',
+      'Хэрэглэгчийн аппликейшн': 'tech',
+      'Тогтвортой хөгжил': 'success',
+      'Мобайл аппликейшн': 'tech',
+      'Хэрэглэгчийн технологи': 'tech',
+      'Бүтээлч эдийн засаг': 'info',
+      'Ухаалаг хот': 'tech',
+      'Аялал жуулчлалын технологи': 'info'
     }
     
     return map[interest] || 'default'
@@ -87,15 +91,15 @@ export default function InvestorDetailPage() {
       <div className="mb-8">
         <Link href="/investors" className="flex items-center text-muted-foreground hover:text-foreground">
           <ArrowLeft className="h-4 w-4 mr-2" />
-          Back to Investors
+          Хөрөнгө оруулагчид руу буцах
         </Link>
       </div>
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Left Column */}
+        {/* Зүүн Талын Хэсэг */}
         <div className="lg:col-span-2">
           <div className="bg-card rounded-xl border shadow-sm p-8">
-            {/* Header */}
+            {/* Толгой хэсэг */}
             <div className="flex flex-col md:flex-row md:items-center gap-6 pb-6 border-b">
               <Avatar className="h-24 w-24">
                 <AvatarImage src={investor.avatar} alt={investor.name} />
@@ -106,7 +110,7 @@ export default function InvestorDetailPage() {
                 <h1 className="text-3xl font-bold">{investor.name}</h1>
                 <p className="text-xl text-muted-foreground flex items-center mt-1">
                   <Building2 className="h-5 w-5 mr-2" />
-                  {investor.title} at {investor.company}
+                  {investor.title} - {investor.company}
                 </p>
                 <p className="text-muted-foreground flex items-center mt-2">
                   <MapPin className="h-5 w-5 mr-2" />
@@ -148,18 +152,18 @@ export default function InvestorDetailPage() {
               </div>
             </div>
             
-            {/* Bio Section */}
+            {/* Намтар хэсэг */}
             <div className="py-6 border-b">
-              <h2 className="text-xl font-semibold mb-4">About</h2>
+              <h2 className="text-xl font-semibold mb-4">Тухай</h2>
               <p className="text-foreground/90 leading-relaxed whitespace-pre-line">
                 {investor.bio}
               </p>
             </div>
             
-            {/* Investment Focus */}
+            {/* Хөрөнгө оруулалтын чиглэл */}
             <div className="py-6 border-b grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h2 className="text-xl font-semibold mb-4">Investment Focus</h2>
+                <h2 className="text-xl font-semibold mb-4">Хөрөнгө оруулалтын чиглэл</h2>
                 <div className="flex flex-wrap gap-2">
                   {investor.interests.map(interest => (
                     <Badge 
@@ -174,7 +178,7 @@ export default function InvestorDetailPage() {
               </div>
               
               <div>
-                <h2 className="text-xl font-semibold mb-4">Investment Stages</h2>
+                <h2 className="text-xl font-semibold mb-4">Хөрөнгө оруулалтын үе шатууд</h2>
                 <div className="flex flex-wrap gap-2">
                   {investor.investmentStages.map(stage => (
                     <Badge key={stage} variant="secondary" className="px-3 py-1 text-sm">
@@ -185,9 +189,9 @@ export default function InvestorDetailPage() {
               </div>
             </div>
             
-            {/* Portfolio Companies */}
+            {/* Багцын компаниуд */}
             <div className="pt-6">
-              <h2 className="text-xl font-semibold mb-4">Portfolio Companies</h2>
+              <h2 className="text-xl font-semibold mb-4">Багцын компаниуд</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {investor.portfolioCompanies.map((company, index) => (
                   <div 
@@ -212,17 +216,17 @@ export default function InvestorDetailPage() {
           </div>
         </div>
         
-        {/* Right Column */}
+        {/* Баруун Талын Хэсэг */}
         <div className="space-y-6">
-          {/* Contact Card */}
+          {/* Холбоо барих хэсэг */}
           <div className="bg-card rounded-xl border shadow-sm p-6">
-            <h2 className="text-xl font-semibold mb-4">Contact Information</h2>
+            <h2 className="text-xl font-semibold mb-4">Холбоо барих мэдээлэл</h2>
             
             <div className="space-y-4">
               <div className="flex items-center">
                 <Mail className="h-5 w-5 text-muted-foreground mr-3" />
                 <div>
-                  <p className="text-sm text-muted-foreground">Email</p>
+                  <p className="text-sm text-muted-foreground">Имэйл</p>
                   <a 
                     href={`mailto:${investor.email}`} 
                     className="text-primary hover:underline"
@@ -236,7 +240,7 @@ export default function InvestorDetailPage() {
                 <div className="flex items-center">
                   <Phone className="h-5 w-5 text-muted-foreground mr-3" />
                   <div>
-                    <p className="text-sm text-muted-foreground">Phone</p>
+                    <p className="text-sm text-muted-foreground">Утас</p>
                     <a 
                       href={`tel:${investor.phone}`} 
                       className="text-primary hover:underline"
@@ -251,7 +255,7 @@ export default function InvestorDetailPage() {
                 <div className="flex items-center">
                   <Globe className="h-5 w-5 text-muted-foreground mr-3" />
                   <div>
-                    <p className="text-sm text-muted-foreground">Website</p>
+                    <p className="text-sm text-muted-foreground">Вэбсайт</p>
                     <a 
                       href={investor.website}
                       target="_blank"
@@ -266,37 +270,37 @@ export default function InvestorDetailPage() {
             </div>
             
             <div className="mt-6 space-y-3">
-              <Button className="w-full">Contact Investor</Button>
-              <Button variant="outline" className="w-full">Request Introduction</Button>
+              <Button className="w-full">Хөрөнгө оруулагчтай холбогдох</Button>
+              <Button variant="outline" className="w-full">Танилцуулга хүсэх</Button>
             </div>
           </div>
           
-          {/* Investment Information */}
+          {/* Хөрөнгө оруулалтын мэдээлэл */}
           <div className="bg-card rounded-xl border shadow-sm p-6">
-            <h2 className="text-xl font-semibold mb-4">Investment Details</h2>
+            <h2 className="text-xl font-semibold mb-4">Хөрөнгө оруулалтын дэлгэрэнгүй</h2>
             
             <div className="space-y-4">
               <div className="flex justify-between">
-                <p className="text-muted-foreground">Investment Range</p>
+                <p className="text-muted-foreground">Хөрөнгө оруулалтын хэмжээ</p>
                 <p className="font-medium">
                   {formatMoney(investor.minInvestment)} - {formatMoney(investor.maxInvestment)}
                 </p>
               </div>
               
               <div className="flex justify-between">
-                <p className="text-muted-foreground">Preferred Stages</p>
+                <p className="text-muted-foreground">Дуртай үе шатууд</p>
                 <p className="font-medium">{investor.investmentStages.join(', ')}</p>
               </div>
               
               <div className="pt-4 border-t">
                 <div className="flex items-center gap-3 text-primary mb-3">
                   <DollarSign className="h-5 w-5" />
-                  <h3 className="font-semibold">Ready to pitch?</h3>
+                  <h3 className="font-semibold">Танилцуулах бэлэн үү?</h3>
                 </div>
                 <p className="text-sm text-muted-foreground mb-3">
-                  Prepare your documents and request a meeting with {investor.name}.
+                  Баримт бичгээ бэлтгээд {investor.name}-тай уулзалт товлоорой.
                 </p>
-                <Button className="w-full">Prepare Pitch</Button>
+                <Button className="w-full">Танилцуулга бэлтгэх</Button>
               </div>
             </div>
           </div>
