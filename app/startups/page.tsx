@@ -98,7 +98,7 @@ const mockStartups = [
   {
     id: '6',
     name: 'MonTravel',
-    logo: 'https://images.pexels.com/photos/4577972/pexels-photo-4577972.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    logo: 'https://www.google.com/imgres?q=montravel&imgurl=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fe%2Fe8%2FVignoble_de_l%2527AOC_Montravel_dans_le_Bergeracois.jpg%2F960px-Vignoble_de_l%2527AOC_Montravel_dans_le_Bergeracois.jpg&imgrefurl=https%3A%2F%2Ffr.wikipedia.org%2Fwiki%2FMontravel_(AOC)&docid=fKvpSC15hnk_4M&tbnid=kpqxgZ3mG92kIM&vet=12ahUKEwiCgb7dsOuMAxVRr1YBHfpTLnMQM3oECBcQAA..i&w=960&h=636&hcb=2&ved=2ahUKEwiCgb7dsOuMAxVRr1YBHfpTLnMQM3oECBcQAA',
     description: {
       en: 'Tourism platform connecting international travelers with local Mongolian experiences',
       mn: 'Олон улсын аялагчдыг Монголын орон нутгийн туршлагатай холбодог аялал жуулчлалын платформ',

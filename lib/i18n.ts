@@ -1,4 +1,5 @@
-import { createI18n } from 'next-intl';
+// import { createI18n } from 'next-intl';
+import {createTranslator} from 'next-intl'
 
 export const locales = ['en', 'mn'];
 export const defaultLocale = 'mn';
@@ -183,7 +184,7 @@ const messages = {
 };
 
 export function getIntl(locale: string) {
-  return createI18n({
+  return createTranslator({
     locale,
     messages: messages[locale as keyof typeof messages],
   });
