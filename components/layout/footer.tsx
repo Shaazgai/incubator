@@ -88,8 +88,8 @@ export default function Footer() {
                 <MapPin className="h-5 w-5 mr-2 text-muted-foreground" />
                 <span className="text-muted-foreground">
                   {locale === 'en' 
-                    ? 'Central Tower, Sukhbaatar Square, Ulaanbaatar, Mongolia'
-                    : 'Төв Цамхаг, Сүхбаатарын талбай, Улаанбаатар, Монгол'}
+                    ? 'UFE Ulaanbaatar, Mongolia'
+                    : 'СЭЗИС Улаанбаатар, Монгол'}
                 </span>
               </div>
               <div className="flex items-center">

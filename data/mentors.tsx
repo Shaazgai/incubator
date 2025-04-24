@@ -1,6 +1,5 @@
 import { MentorType } from "@/types";
 
-
 export const mentors: MentorType[] = [
   {
     id: '1',

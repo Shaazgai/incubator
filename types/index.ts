@@ -10,8 +10,8 @@ export type InvestorType = {
   phone?: string;
   bio: string;
   interests: string[];
-  investmentStages: ('Pre-seed' | 'Seed' | 'Series A' | 'Series B' | 'Growth')[];
-  // investmentStages: ('Үр өмнөх' | 'Үр' | 'А Цуврал' | 'Б Цуврал' | 'Өсөлт')[];
+  // investmentStages: ('Pre-seed' | 'Seed' | 'Series A' | 'Series B' | 'Growth')[];
+  investmentStages: ('Үр өмнөх' | 'Үр' | 'А Цуврал' | 'Б Цуврал' | 'Өсөлт')[];
   portfolioCompanies: {
     name: string;
     logo?: string;

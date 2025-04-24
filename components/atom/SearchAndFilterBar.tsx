@@ -116,7 +116,7 @@ export default function SearchAndFilterBar({
             onClick={handleSearch} 
             className="md:w-auto w-full"
           >
-            Search
+            Хайх
           </Button>
           
           <Button 
@@ -124,7 +124,7 @@ export default function SearchAndFilterBar({
             onClick={() => setShowFilters(!showFilters)}
             className="md:w-auto w-full"
           >
-            Filters {filterCount > 0 && <Badge className="ml-2">{filterCount}</Badge>}
+            Шүүлтүүр {filterCount > 0 && <Badge className="ml-2">{filterCount}</Badge>}
           </Button>
           
           {filterCount > 0 && (
@@ -196,10 +196,10 @@ export default function SearchAndFilterBar({
           
           <div className="flex justify-end gap-2 mt-4 pt-4 border-t">
             <Button variant="outline" onClick={() => setShowFilters(false)}>
-              Cancel
+            Цуцлах
             </Button>
             <Button onClick={applyFilters}>
-              Apply Filters
+            Шүүлтүүр хэрэглэх   
             </Button>
           </div>
         </div>

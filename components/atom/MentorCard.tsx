@@ -13,7 +13,6 @@ import {
   Clock, 
   ExternalLink, 
   Calendar, 
-  Mail, 
   Linkedin, 
   Twitter,
   Globe,
